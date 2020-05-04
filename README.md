@@ -11,8 +11,7 @@ For the details of the algorithm, please refer the following paper.
 }
 
 
-#######################
-Description of folders and files
+## Description of folders and files
 
 config/
 Lists of clean utterances for training and test.
@@ -42,8 +41,7 @@ RUN.m
 Loads configurations from load_config.m and runs a speech enhancement demo.
 
 
-#######################
-DEMO
+## DEMO
 
 (Tested on Matlab 2017b under Ubuntu 16.04 and Windows 10.)
 This demo uses 670 mixtures for training and 80 mixtures for testing.
@@ -72,7 +70,6 @@ When DNN training and test are finished, you will find the following speech sepa
     DATA/babble_white/log_db0 3.txt: log file for this demo.
 
 
-#######################
-Acknowledgement
+## Acknowledgement
 We use the DNN framework from the professor Deliang Wang's team of the OSU.(http://web.cse.ohio-state.edu/pnl/DNN_toolbox/)
 
