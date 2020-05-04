@@ -68,7 +68,7 @@ To run this demo, simply execute RUN.m in matlab. This matlab script will execut
 
 When DNN training and test are finished, you will find the following speech separation results:
     DATA/babble_white/dnn/WAVE/db0 3/: mixture, clean speech and enhanced speech.
-    DATA/babble_white/dnn/STORE/db0 3/EST_MASK/: estimated masks and ideal masks.
+    DATA/babble_white/dnn/STORE/db0 3/est_lsf/: estimated lsfs and ideal lsfs.
     DATA/babble_white/log_db0 3.txt: log file for this demo.
 
 
