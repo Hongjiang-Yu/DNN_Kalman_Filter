@@ -10,14 +10,18 @@ format compact
 warning('off','all');
 global feat noise frame_index DFI is_wiener_mask;
 global train_data train_label cv_data cv_label test_data test_label...
-       small_mix_cell small_noise_cell small_speech_cell;
+       small_mix_cell small_noise_cell small_speech_cell is_color;
 warning('on','all');
 
 fprintf(1,'Feat=%s Noise=%s\n', feat, noise);
 
 tic;
 save_mvn_prefix_path = ['MVN_STORE' filesep];
-MVN_DATA_PATH = [save_mvn_prefix_path 'allmvntrain_' noise '_' feat '_' num2str(db) '.mat']
+if is_color ==1
+    MVN_DATA_PATH = [save_mvn_prefix_path 'allmvntrain_' noise '_' feat '_' num2str(db) '_color.mat']
+else
+    MVN_DATA_PATH = [save_mvn_prefix_path 'allmvntrain_' noise '_' feat '_' num2str(db) '.mat']
+end
 train_handle = matfile(MVN_DATA_PATH,'Writable',false);
 
 test_data = train_handle.test_data;

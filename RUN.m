@@ -1,21 +1,24 @@
 %DNN-assisted Kalman filtering for speech enhancement
 
 %Please refer the paper 
-%{@inproceedings{yu2019deep,
-  title={A Deep Neural Network Based Kalman Filter for Time Domain Speech Enhancement},
-  author={Yu, Hongjiang and Ouyang, Zhiheng and Zhu, Wei-Ping and Champagne, Benoit and Ji, Yunyun},
-  booktitle={2019 IEEE International Symposium on Circuits and Systems (ISCAS)},
-  pages={1--5},
-  year={2019},
-  organization={IEEE}
-}
-%}
+%@inproceedings{yu2019deep,
+%   title={A Deep Neural Network Based Kalman Filter for Time Domain Speech Enhancement},
+%   author={Yu, Hongjiang and Ouyang, Zhiheng and Zhu, Wei-Ping and Champagne, Benoit and Ji, Yunyun},
+%   booktitle={2019 IEEE International Symposium on Circuits and Systems (ISCAS)},
+%   pages={1--5},
+%   year={2019},
+%   organization={IEEE}
+% }
+
 
 format compact
 warning off;
+clear all
+clc
 
 % load configurations 
 load_config
+global is_color;
 
 % create folders for demo
 tmp_path = ['DATA' filesep];
@@ -92,10 +95,17 @@ if is_dnn == 1
 end
 cd(['..' filesep '..' filesep '..'])
 
-if is_kalman == 1
+if is_kalman ==1 && is_color == 1 
+    addpath(genpath('Kalman_color'));
+    cd(['DATA' ]);
+    filepath_kalman = [  noise_line filesep 'dnn' filesep 'STORE' filesep 'db' num2str(mix_db) filesep 'color' filesep 'est_lsf' filesep 'est_labels_' noise_line '_db' num2str(mix_db)  '.mat'];
+    wavpath_kalman = [  noise_line filesep 'dnn' filesep 'WAVE' filesep 'db' num2str(mix_db) filesep];
+    fprintf('Kalman filtering is processing\n')
+    [stoi_score, pesq_score] = kalman_color(filepath_kalman,wavpath_kalman);
+elseif is_kalman ==1 && is_color == 0 
     addpath(genpath('Kalman'));
     cd(['DATA' ]);
-    filepath_kalman = [  noise_line filesep 'dnn' filesep 'STORE' filesep 'db' num2str(mix_db) filesep 'est_lsf' filesep 'est_labels_' noise_line '_db' num2str(mix_db)  '.mat'];
+    filepath_kalman = [  noise_line filesep 'dnn' filesep 'STORE' filesep 'db' num2str(mix_db) filesep 'basic' filesep 'est_lsf' filesep 'est_labels_' noise_line '_db' num2str(mix_db)  '.mat'];
     wavpath_kalman = [  noise_line filesep 'dnn' filesep 'WAVE' filesep 'db' num2str(mix_db) filesep];
     fprintf('Kalman filtering is processing\n')
     [stoi_score, pesq_score] = kalman(filepath_kalman,wavpath_kalman);

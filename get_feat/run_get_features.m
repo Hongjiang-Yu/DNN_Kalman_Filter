@@ -1,6 +1,6 @@
 global feat_set_size feat_start feat_end NUMBER_CHANNEL;
 global feat_data feat_label;
-global cur_dfi_entry cur_dfi_row DFI;
+global cur_dfi_entry cur_dfi_row DFI is_color;
 rng default;
 
 DATA_PATH  %%%% bef %%%%%%
@@ -16,7 +16,11 @@ fs = 16e3;
 
 for i=1:feat_set_size
     [tmp_features1] = get_training_data( small_mix_cell{i},fun_name);
-    [tmp_features2, tmp_lsf] = get_lsf( small_mix_cell{i}, small_speech_cell{i}, order_lpc, fs, win_len);%, win_shift);
+    if is_color ==1
+        [tmp_features2, tmp_lsf] = get_lsf_color( small_mix_cell{i}, small_speech_cell{i}, small_noise_cell{i}, order_lpc, fs, win_len);%, win_shift);
+    else
+        [tmp_features2, tmp_lsf] = get_lsf( small_mix_cell{i}, small_speech_cell{i}, order_lpc, fs, win_len);%, win_shift);
+    end
     tmp_features = [tmp_features2;tmp_features1];
     %tmp_features = [tmp_features2];
     feat_data = [feat_data; transpose(tmp_features)];

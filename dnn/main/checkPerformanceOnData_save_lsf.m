@@ -1,7 +1,7 @@
 function [output] = checkPerformanceOnData_save_lsf(net,data,label,opts,write_wav,num_split)
 disp('save_lsf_func');
 global feat noise frame_index DFI;
-global small_mix_cell small_noise_cell small_speech_cell;
+global small_mix_cell small_noise_cell small_speech_cell is_color;
 num_test_sents = size(DFI,1)
 
 % support multiple snr and noise
@@ -34,7 +34,11 @@ clean_lsf = cell(num_test_sents);
 %  clean_q = cell(num_test_sents);
 
 % save the model first
-save_prefix_path = ['STORE' filesep 'db' num2str(opts.db) filesep];
+if is_color ==1 
+    save_prefix_path = ['STORE' filesep 'db' num2str(opts.db) filesep 'color' filesep];
+else
+    save_prefix_path = ['STORE' filesep 'db' num2str(opts.db) filesep 'basic' filesep];
+end
 if ~exist(save_prefix_path,'dir'); mkdir(save_prefix_path); end;
 if ~exist([save_prefix_path 'est_lsf'],'dir'); mkdir([save_prefix_path 'est_lsf']); end;
 if ~exist([save_prefix_path 'model'],'dir'); mkdir([save_prefix_path 'model']); end;

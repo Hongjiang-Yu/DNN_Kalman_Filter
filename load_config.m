@@ -20,13 +20,14 @@ mix_db = [0, 3]; % multiple input SNRs
 %% speech separation steps
 
 % 1. generate mixtures or not. 0: no, 1: yes.
-is_gen_mix = 1;
+is_gen_mix = 0;
 
 % 2. generate features/masks or not. 0: no, 1: yes.
-is_gen_feat = 1;
+is_gen_feat = 0;
 
 % 3. perform dnn training/test or not. 0: no, 1: yes.
-is_dnn = 1;
+is_dnn = 0;
 
 % 4. Kalman filter
 is_kalman = 1;
+is_color = 1;% choose basic Kalman filtering or colored-noise Kalman filtering

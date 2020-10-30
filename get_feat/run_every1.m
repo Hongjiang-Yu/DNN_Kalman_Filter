@@ -3,7 +3,7 @@ function run_every1(current_feature, noise_line, part, START, END, db, TMP_STORE
 delete('*.mat');
 format compact;
 
-global feat_set_size feat_start feat_end NUMBER_CHANNEL is_wiener_mask store_enable;
+global feat_set_size feat_start feat_end NUMBER_CHANNEL is_color store_enable;
 
 fprintf(1,'\t%s\t%s\n',current_feature,noise_line);
 
@@ -65,7 +65,11 @@ for i=1:snr_num
     end
 end
 
-STORE_PATH = [TMP_STORE filesep 'db' num2str(db) filesep 'feat'];
+if is_color ==1
+    STORE_PATH = [TMP_STORE filesep 'db' num2str(db) filesep 'feat_color'];
+else
+    STORE_PATH = [TMP_STORE filesep 'db' num2str(db) filesep 'feat'];
+end
 
 if store_enable
     if ~exist(STORE_PATH,'dir'); mkdir(STORE_PATH); end;

@@ -32,11 +32,14 @@ Code for acoustic features and lsfs calculation.
 Kalman/:
 Files for Kalman filtering algorithm and objective evaluation.
 
+Kalman_color/:
+Files for colored-noise Kalman filtering algorithm and objective evaluation.
+
 premix_data/
 Sample data including clean speech and noise.
 
 load_config.m
-Configures feature type, noise type, training utterance list, test utterance list, mixture SNR, etc.
+Configures feature type, noise type, training utterance list, test utterance list, mixture SNR, Kalman filter type, etc.
 
 RUN.m
 Loads configurations from load_config.m and runs a speech enhancement demo.
@@ -65,12 +68,14 @@ To run this demo, simply execute RUN.m in matlab. This matlab script will execut
             (3) 'opts.hid_struct' specifies the numbers of hidden layers and hidden units.
             (4) 'opts.sgd_max_epoch' specifies the maximum number of training epochs.
             (5) 'opts.isDropout' specifies whether to use dropout regularization.
+    IV. Kalman filtering
+        for basic Kalman filter, please set is_color = 0.
+        for colored-noise Kalman filter, please set is_color = 1. 
 
 When DNN training and test are finished, you will find the following speech separation results:
     DATA/babble_white/dnn/WAVE/db0 3/: mixture, clean speech and enhanced speech.
-    DATA/babble_white/dnn/STORE/db0 3/EST_MASK/: estimated masks and ideal masks.
+    DATA/babble_white/dnn/STORE/db0 3/est_lsf/: estimated lsfs and ideal lsfs.
     DATA/babble_white/log_db0 3.txt: log file for this demo.
-
 
 #######################
 Acknowledgement

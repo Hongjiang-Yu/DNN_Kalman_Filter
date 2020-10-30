@@ -1,6 +1,6 @@
-function run_every(noise, feat, db, TMP_STORE, num_mix_per_test_part)
+function mvn_store(noise, feat, db, TMP_STORE, num_mix_per_test_part)
 format compact;
-
+global is_color
 fprintf(1,'MVNing Feat=%s Noise=%s\n', feat, noise);
 
 tmp_str = strsplit(noise, '_');
@@ -38,12 +38,20 @@ small_mix_cell = tmp_small_mix_cell;
 
 % test_set
 root_path = [TMP_STORE filesep 'db' num2str(db) filesep]
-load([root_path 'feat' filesep 'test_' noise '_' feat '.mat']); %test set
+if is_color ==1
+    load([root_path 'feat_color' filesep 'test_' noise '_' feat '.mat']); %test set
+else
+    load([root_path 'feat' filesep 'test_' noise '_' feat '.mat']); %test set
+end
 test_data = feat_data; test_label = feat_label;
 clear feat_data feat_label
 
 % train_set
-train_path = [root_path 'feat' filesep 'train_' noise '_' feat '.mat']
+if is_color ==1
+    train_path = [root_path 'feat_color' filesep 'train_' noise '_' feat '.mat']
+else
+    train_path = [root_path 'feat' filesep 'train_' noise '_' feat '.mat']
+end
 
 train_data = []; train_target = [];
 disp(['loading ' train_path]);
@@ -69,7 +77,11 @@ test_data = mean_var_norm_testing(test_data, para.tr_mu,para.tr_std);
 
 save_mvn_prefix_path = ['MVN_STORE' filesep];
 if ~exist(save_mvn_prefix_path,'dir'); mkdir(save_mvn_prefix_path); end;
-MVN_DATA_PATH = [save_mvn_prefix_path 'allmvntrain_' noise '_' feat '_' num2str(db) '.mat']
+if is_color ==1
+    MVN_DATA_PATH = [save_mvn_prefix_path 'allmvntrain_' noise '_' feat '_' num2str(db) '_color.mat']
+else
+    MVN_DATA_PATH = [save_mvn_prefix_path 'allmvntrain_' noise '_' feat '_' num2str(db) '.mat']
+end
 save(MVN_DATA_PATH, 'train_data','train_target','cv_data','cv_label','test_data','test_label', 'DFI',...
  'small_mix_cell', 'small_noise_cell', 'small_speech_cell', 'c_mat', '-v7.3');%also saved test mixes
 
