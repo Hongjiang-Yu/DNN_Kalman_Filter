@@ -12,13 +12,13 @@ For the details of the algorithm, please refer the following paper. please refer
 
 For the details of the DNN augmented colored-noise Kalman filtering, please refer to the following paper.<br/> 
 https://www.sciencedirect.com/science/article/abs/pii/S0167639320302831 <br/> 
-@article{~,
+@article{yu2020speech,
 &emsp;  title={Speech Enhancement Using a DNN-Augmented Colored-Noise Kalman Filter},<br/> 
 &emsp;  author={Yu, Hongjiang and Zhu, Wei-Ping and Champagne},<br/> 
 &emsp;  journal={Speech Communication},<br/> 
-&emsp;  volume={~},<br/> 
-&emsp;  number={~},<br/> 
-&emsp;  pages={~},<br/> 
+&emsp;  volume={in press},<br/> 
+&emsp;  number={in press},<br/> 
+&emsp;  pages={in press},<br/> 
 &emsp;  year={2020},<br/> 
 &emsp;  publisher={Elsevier}<br/> 
 }
