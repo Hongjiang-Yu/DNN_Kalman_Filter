@@ -1,13 +1,26 @@
 This folder contains Matlab programs for a toolbox for DNN assisted Kalman filtering for speech enhancement. This toolbox is composed by Hongjiang Yu, based on the framework written by OSU team.
 
-For the details of the algorithm, please refer the following paper. 
+For the details of the DNN augmented basic Kalman filtering, please refer the following paper. 
 @inproceedings{yu2019deep,
   title={A Deep Neural Network Based Kalman Filter for Time Domain Speech Enhancement},
   author={Yu, Hongjiang and Ouyang, Zhiheng and Zhu, Wei-Ping and Champagne, Benoit and Ji, Yunyun},
-  booktitle={2019 IEEE International Symposium on Circuits and Systems (ISCAS)},
+  booktitle={IEEE International Symposium on Circuits and Systems (ISCAS)},
   pages={1--5},
   year={2019},
   organization={IEEE}
+}
+
+For the details of the DNN augmented colored-noise Kalman filtering, please refer to the following paper.
+https://www.sciencedirect.com/science/article/abs/pii/S0167639320302831
+@article{~,
+  title={Speech Enhancement Using a DNN-Augmented Colored-Noise Kalman Filter},
+  author={Yu, Hongjiang and Zhu, Wei-Ping and Champagne},
+  journal={Speech Communication},
+  volume={~},
+  number={~},
+  pages={~},
+  year={2020},
+  publisher={Elsevier}
 }
 
 
@@ -18,7 +31,7 @@ config/
 Lists of clean utterances for training and test.
 
 DATA/
-Mixtures, features, lsfs (line spectral frequencies) and enhanced speech are stored here.
+Mixtures, features, LSFs (line spectral frequencies) and enhanced speech are stored here.
 
 dnn/
 Code for DNN training and test, where dnn/main/ includes key functions for DNN training/test, dnn/pretraining/ includes code for unsupervised DNN pretraining.
@@ -27,7 +40,7 @@ gen_mixture/
 Code for creating mixtures from noise and clean utterances.
 
 get_feat/:
-Code for acoustic features and lsfs calculation.
+Code for acoustic features and LSFs calculation.
 
 Kalman/:
 Files for Kalman filtering algorithm and objective evaluation.
@@ -61,7 +74,7 @@ To run this demo, simply execute RUN.m in matlab. This matlab script will execut
     II. Create data folders for this demo.
     III. Implement DNN based speech separation. Three steps are performed:
         (a) Generate training and test mixtures.
-        (b) Generate training and test features / lsfs
+        (b) Generate training and test features / LSFs
         (c) DNN training and test. To use a different network architecture, you may change the configurations ('opts.*') in ./dnn/main/dnn_train.m, where:
             (1) 'opts.unit_type_hidden' specifies the activation function for hidden layers ('sigm': sigmoid, 'relu': ReLU).
             (2) 'opts.isPretrain' indicates whether to perform pretraining (0: no pretraining, 1: pretraining). Note that pretraining is only supported for the sigmoid hidden activation function.
@@ -74,7 +87,7 @@ To run this demo, simply execute RUN.m in matlab. This matlab script will execut
 
 When DNN training and test are finished, you will find the following speech separation results:
     DATA/babble_white/dnn/WAVE/db0 3/: mixture, clean speech and enhanced speech.
-    DATA/babble_white/dnn/STORE/db0 3/est_lsf/: estimated lsfs and ideal lsfs.
+    DATA/babble_white/dnn/STORE/db0 3/est_lsf/: estimated LSFs and ideal LSFs.
     DATA/babble_white/log_db0 3.txt: log file for this demo.
 
 #######################
