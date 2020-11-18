@@ -16,12 +16,11 @@ https://www.sciencedirect.com/science/article/abs/pii/S0167639320302831 <br/>
 &emsp;  title={Speech Enhancement Using a DNN-Augmented Colored-Noise Kalman Filter},<br/> 
 &emsp;  author={Yu, Hongjiang and Zhu, Wei-Ping and Champagne},<br/> 
 &emsp;  journal={Speech Communication},<br/> 
-&emsp;  volume={125},<br/>  
+&emsp;  volume={125},<br/> 
 &emsp;  pages={142-151},<br/> 
 &emsp;  year={2020},<br/> 
 &emsp;  publisher={Elsevier}<br/> 
 }
-
 
 ## Description of folders and files
 
